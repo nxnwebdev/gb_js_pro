@@ -5,7 +5,7 @@ class ProductList {
         this._productsObjects = []; 
         this._fetchGoods();
         this._render();
-
+        this.getAllGoodsPrice();
     }
 
     _fetchGoods() {
@@ -27,6 +27,15 @@ class ProductList {
         }
     }
 
+    getAllGoodsPrice(){
+        let sum = 0;
+        for (const goods of this._goods) {
+
+            sum += goods.price;
+        }
+        console.log(`Суммарная стоимость продуктов ${sum}`);
+        return sum;
+    }
 
 	
 }
