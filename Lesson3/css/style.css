@@ -16,6 +16,27 @@ button{
     text-transform: uppercase;
     font-weight: bold;
 }
+.active{
+    display: block!important;
+}
+.cart{
+    position:relative;
+    width:500px;
+    display:flex;
+    justify-content:right;
+}
+.cart-block{
+	display: none;
+    position: absolute;
+    z-index: 1;
+    width: 65%;
+    height: auto;
+    left: 0;
+    top: 0px;
+    background: #fff;
+    color: #000;
+    padding: 25px;
+}
 .btn-cart{
     background-color: #fafafa;
     padding: 10px 20px;
@@ -39,7 +60,7 @@ button{
     grid-template-columns: repeat(auto-fit, 200px);
     grid-template-rows: 1fr;
     padding: 40px 80px;
-    justify-content: space-between;
+    justify-content: left;
 }
 p {
     margin: 0 0 5px 0;
@@ -74,4 +95,19 @@ img {
     background-color: transparent;
     border-color: #2f2a2d;
     color: #2f2a2d;
+}
+.delete-btn{
+    margin-top: 5px;
+    background-color: #2f2a2d;
+    padding: 10px 20px;
+    border: 1px solid transparent;
+    color: rgb(238, 142, 142);
+    border-radius: 5px;
+    transition: all ease-in-out .4s;
+    cursor: pointer;
+}
+.delete-btn:hover{
+    background-color: transparent;
+    border-color: #2f2a2d;
+    color: #a54242;
 }
