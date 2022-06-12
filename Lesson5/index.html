@@ -12,16 +12,37 @@
         <div class="logo">Интернет-магазин</div>
         <div class="cart">
             <form action="#" class="search-form">
-                <input type="text" class="search-field">
-                <button class="btn-search" type="submit">
+                <input type="text" class="search-field" v-model="searchLine">
+                <button class="btn-search" @click="filterGoods(searchLine)" type="submit">
                     <i class="fas fa-search"></i>
                 </button>
             </form>
-            <button class="btn-cart" type="button">Корзина</button>
+            <button class="btn-cart" type="button" @click="showCart = !showCart">Корзина</button>
+            <div class="cart-block"  v-bind:class="{ active: showCart}">
+                <p v-if="!cardProducts.length">Корзина пуста</p>
+                <div class="product-item" v-if="cardProducts.length" v-for="cart of cardProducts" :key="cart.id_product">
+                    <img :src="imgCatalog" alt="Some img">
+                    <div class="desc">
+                        <h3>{{cart.product_name}}</h3>
+                        <p>{{cart.price}}₽</p>
+                        <button class="buy-btn" @click="removeProduct(cart)">Удалить</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </header>
     <main>
-        <div class="products">
+        <div v-if="filtered.length" class="products">
+            <div class="product-item" v-for="product of filtered" :key="product.id_product">
+                <img :src="imgCatalog" alt="Some img">
+                <div class="desc">
+                    <h3>{{product.product_name}}</h3>
+                    <p>{{product.price}}₽</p>
+                    <button class="buy-btn" @click="addProduct(product)">Купить</button>
+                </div>
+            </div>
+        </div>
+        <div class="products" v-else>
             <div class="product-item" v-for="product of products" :key="product.id_product">
                 <img :src="imgCatalog" alt="Some img">
                 <div class="desc">
