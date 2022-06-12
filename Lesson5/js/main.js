@@ -5,7 +5,12 @@ const app = new Vue({
     data: {
         catalogUrl: '/catalogData.json',
         products: [],
-        imgCatalog: 'https://via.placeholder.com/200x150'
+        imgCatalog: 'https://via.placeholder.com/200x150',
+        filtered:[],
+        cardProducts:[],
+        searchLine:'',
+        showCart:false
+
     },
     methods: {
         getJson(url) {
@@ -16,8 +21,21 @@ const app = new Vue({
                 })
         },
         addProduct(product) {
-            console.log(product.id_product);
-        }
+            this.cardProducts.push(product);
+           
+        },
+        removeProduct(product) {
+           
+          
+            this.cardProducts.splice(product, 1);
+           
+        },
+        filterGoods(value){
+            
+            const regexp = new RegExp(value, 'i');
+            this.filtered = this.products.filter(product =>regexp.test(product.product_name));
+         
+          }
     },
     beforeCreate() {
         console.log('beforeCreate');
